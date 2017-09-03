@@ -30,13 +30,7 @@ function Wagon() {
 makeTraveler = function(travelerName){
 
   let brandNewTraveler = new Traveler();
-  brandNewTraveler.name = travelerName; // FIXME: You want to be initializing an instance of the Traveler class. Traveler is our abstract concept,
-//our pattern which all the new Travelers will follow. So when you do something like Traveler.name = 'foo',
-// what you are doing is setting a property on the "abstract" Traveler object itself --
-//not on any particular traveler. So assign `new Traveler()` to a variable and set a `name` property to it.
-//This applies for `food`, `isHealthy`.
-
-
+  brandNewTraveler.name = travelerName;
 
   let randomFood = getRandomIntInclusive(5,100);
   brandNewTraveler.food = randomFood;
@@ -63,22 +57,14 @@ makeTraveler = function(travelerName){
 
 //    Create a new wagon with an empty passenger list and the specified capacity.
 
-hunt = function(Traveler){ // FIXME: This function will need you to pass in an argument, which will represent your traveler,
-  //so that the function knows WHO is hunting. The NewLine path says it expects a syntax like `hunt(traveler)`.
-  //You can do it without passing in the particular traveler,
-  //but you'd have to make the hunt function a method assigned to a hunt property on the Traveler object,
-  //so that all travelers can do something like `traveler4.hunt()`. Either way would be fine.
-  //The latter would be closer to best practice. The former would be matching the NewLine requirement
-  //(which is totally fine for right now). Pick whichever you're comfortable with at the moment.
+hunt = function(Traveler){
 
-  console.log("initial food:");  // FIXME: Remember: you'll want to be checking the `food` property of the particular traveler,
-  //not of the Traveler class object itself. As I said above, you'll either need to pass in the particular traveler as an argument,
-  //or you'll need to make the `hunt()` a method attached to the Traveler class object -- whichever you're comfortable doing right now.
+  console.log("initial food:");
   let foodIncrease = Math.random() < 0.5 ? true : false;
 
   if (foodIncrease) {
     console.log(foodIncrease)
-    traveler.food *= 2; // NOTE: This would throw an error "Traver is not defined". Just a simple misspelling. But as above, you won't actually want to be checking the Traveler class object's food property.
+    traveler.food *= 2;
   }
   else {
     traveler.food *= 1.5;
@@ -91,7 +77,7 @@ hunt = function(Traveler){ // FIXME: This function will need you to pass in an a
 
   //  eat(traveler)
 //Consumes 20 of the traveler's food. If the traveler doesn't have 20 food, the traveler is no longer healthy.
-    eat = function(thisTraveler){ // FIXME: Same issue as with `hunt()`
+    eat = function(thisTraveler){
 
     this.traveler = thisTraveler; //?
     // eatTraveler = new Traveler(); ?
@@ -108,7 +94,7 @@ hunt = function(Traveler){ // FIXME: This function will need you to pass in an a
   }
 
   //Add a travelerto a wagon
-  join = function(wagon, traveler){ // FIXME: This is what you want `eat()` and `hunt()` to look like, only without the `wagon` argument.
+  join = function(wagon, traveler){
 
 
     if (wagon.capacity != 0){
@@ -117,17 +103,9 @@ hunt = function(Traveler){ // FIXME: This function will need you to pass in an a
       wagon.capacity = wagon.capacity - 1;
     }
 
-
     console.log ("traveler:" + traveler.name + "was pushed to the wagon" + "and the new capacity of wagon is at: " + wagon.capacity)
 
-
     }
-
-
-
-
-
-
 
 
   // Create a wagon called 'wagon'
