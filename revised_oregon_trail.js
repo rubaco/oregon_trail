@@ -2,7 +2,7 @@
 (function(){
 
 function getRandomIntInclusive(min, max){
-  main = Math.ceil(min) // FIXME: Typo `main` > `min`
+  min = Math.ceil(min) // FIXME: Typo `main` > `min`
   max = Math.floor(max);
   return Math.floor(Math.random()* (max - min + 1)) + min;
 }
@@ -10,9 +10,9 @@ function getRandomIntInclusive(min, max){
 
 function Traveler () {
 
-  this.food = "";
-  this.name = "";
-  this.isHealthy = true;
+  let food;
+  let name;
+  let isHealthy;
 
 }
 
@@ -34,11 +34,11 @@ makeTraveler = function(travelerName){
 
   let randomFood = getRandomIntInclusive(5,100);
   brandNewTraveler.food = randomFood;
-  this.isHealthy = true;
+  brandNewTraveler.isHealthy = true;
 
   console.log("make traveler: " + brandNewTraveler.name);
-  console.log("make food " + brandNewTraveler.food);
-  console.log("make healthy" + brandNewTraveler.isHealthy);
+  console.log("make food: " + brandNewTraveler.food);
+  console.log("make healthy: " + brandNewTraveler.isHealthy);
   return brandNewTraveler;
 }
 
@@ -51,7 +51,7 @@ makeTraveler = function(travelerName){
     const brandNewWagon = new Wagon();
     brandNewWagon.capacity = capacity;  // FIXME: This will also need you to use `new` to initialize an instance of the Wagon class. And then you'll set the capacity of the particular wagon you've assigned to a variable.
     brandNewWagon.passengerList = [];
-    console.log("made wagon with capacity" + brandNewWagon.capacity )
+    console.log("made wagon with capacity: " + brandNewWagon.capacity )
     return brandNewWagon;
   }
 
@@ -59,36 +59,39 @@ makeTraveler = function(travelerName){
 
 hunt = function(Traveler){
 
-  console.log("initial food:");
+  console.log("hunt initial food: " + Traveler.food);
   let foodIncrease = Math.random() < 0.5 ? true : false;
+  console.log ("hunt food increase: " + foodIncrease)
 
   if (foodIncrease) {
-    console.log(foodIncrease)
+
     traveler.food *= 2;
   }
   else {
     traveler.food *= 1.5;
   }
 
-  console.log("final food is " + traveler.food);
+  console.log("hunt final food is " + traveler.food);
 
 }
 
 
   //  eat(traveler)
 //Consumes 20 of the traveler's food. If the traveler doesn't have 20 food, the traveler is no longer healthy.
-    eat = function(thisTraveler){
+    eat = function(eatTraveler){
 
-    this.traveler = thisTraveler; //?
-    // eatTraveler = new Traveler(); ?
+ //  this.traveler = thisTraveler; //?
+    
+ 
+ //eatTraveler = new Traveler(); 
 
-    let foodStart = this.traveler.food;
-    console.log("food start:" + foodStart)
+    let foodStart = eatTraveler.food;
+    console.log("eat food start:" + foodStart)
     newfood = foodStart - (foodStart * .20);
     console.log ("eat function food starts at " + foodStart + " eat food ends at " + newfood)
-    if (this.traveler.food != 20)
+    if (eatTraveler.food != 20)
       {
-      this.traveler.unhealthy = false;
+      eatTraveler.ishealthy = false;
       }
 
   }
@@ -97,13 +100,18 @@ hunt = function(Traveler){
   join = function(wagon, traveler){
 
 
-    if (wagon.capacity != 0){
+    if ( wagon.capacity  > wagon.passengerList.length){
+    //  this.passengerArray.push(traveler);
+
+    console.log ("BEFORE:  push traveler - wagon capacity is at: " + wagon.capacity + "    push traveler passenger list length is: " + wagon.passengerList.length )
+
+   // if (wagon.capacity != 0){
       // FIXME: Nothing is happening here yet, which you probably know.
-      wagon.passengerList.push(traveler);
-      wagon.capacity = wagon.capacity - 1;
+       wagon.passengerList.push(traveler);
+     // wagon.capacity = wagon.capacity - 1;
     }
 
-    console.log ("traveler:" + traveler.name + "was pushed to the wagon" + "and the new capacity of wagon is at: " + wagon.capacity)
+    console.log ("AFTER:  push traveler - wagon capacity is at: " + wagon.capacity + "    push traveler passenger list length is: " + wagon.passengerList.length)
 
     }
 
